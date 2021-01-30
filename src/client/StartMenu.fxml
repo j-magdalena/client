@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="30.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.StartMenu">
+   <children>
+      <Label text="WELCOME TO PUBLISH-SUBSCRIBE SERVICE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label text="PLEASE LOGIN OR REGISTER" />
+      <TextField fx:id="login" promptText="LOGIN" />
+      <TextField fx:id="passwd" promptText="PASSWORD" />
+      <Button mnemonicParsing="false" onMouseClicked="#goLogin" text="LOGIN" />
+      <Button mnemonicParsing="false" onMouseClicked="#goRegister" text="REGISTER" />
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+</VBox>

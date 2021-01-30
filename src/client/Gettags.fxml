@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Gettags">
+   <children>
+      <Label layoutX="258.0" layoutY="14.0" text="ALL TAGS">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ListView fx:id="tag_names" layoutY="51.0" prefHeight="283.0" prefWidth="600.0" />
+      <TextField fx:id="to_sub" layoutX="41.0" layoutY="346.0" />
+      <Button layoutX="216.0" layoutY="346.0" mnemonicParsing="false" onMouseClicked="#subscribe" text="SUBSCRIBE" />
+      <Button layoutX="523.0" layoutY="346.0" mnemonicParsing="false" onMouseClicked="#back" text="BACK" />
+   </children>
+</AnchorPane>

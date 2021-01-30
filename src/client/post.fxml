@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Post">
+   <children>
+      <Button layoutX="278.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#post" text="POST" />
+      <Label layoutX="211.0" layoutY="37.0" text="POST TO YOUR TAG">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tag_name" layoutX="226.0" layoutY="117.0" promptText="NAME OF YOUR TAG" />
+      <TextField fx:id="mess" layoutX="226.0" layoutY="175.0" promptText="MESSAGE" />
+      <Button layoutX="512.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#back" text="BACK" />
+   </children>
+</AnchorPane>

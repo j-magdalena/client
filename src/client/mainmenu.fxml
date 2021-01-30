@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Mainmenu">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="607.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Button layoutX="40.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#post" text="POST MESSAGE" />
+                  <Label layoutX="28.0" layoutY="6.0" text="YOUR SUBSCRIPTIONS" />
+                  <Button layoutX="48.0" layoutY="199.0" mnemonicParsing="false" onMouseClicked="#createTag" text="CREATE TAG" />
+                  <Button layoutX="7.0" layoutY="263.0" mnemonicParsing="false" onMouseClicked="#getTags" text="SHOW ALLAVAILABLE TAGS" />
+                  <Button layoutX="30.0" layoutY="294.0" mnemonicParsing="false" onMouseClicked="#unsubscribe" text="UNSUBSCRIBE TAG" />
+                  <ListView layoutY="28.0" onMouseClicked="#loadTags" prefHeight="161.0" prefWidth="177.0" />
+                  <Button layoutX="56.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#logout" text="LOG OUT" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ListView layoutY="29.0" prefHeight="369.0" prefWidth="422.0" />
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
