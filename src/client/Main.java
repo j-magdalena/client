@@ -35,6 +35,7 @@ public class Main extends Application {
         sceneLoader.loadScene(SceneLoader.SCENE.START);
     }
 
+
     public static Socket sock(){
         return clientSocket;
     }

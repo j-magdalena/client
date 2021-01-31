@@ -26,7 +26,6 @@ public class SceneLoader {
         }
         public void loadScene(SCENE scene)  {
             String dir = getFile(scene);
-
             Parent root = null;
             try {
                 root = FXMLLoader.load(getClass().getResource(dir));

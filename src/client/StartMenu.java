@@ -4,7 +4,6 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Arrays;
 
 public class StartMenu {
     private static String username;

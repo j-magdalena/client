@@ -9,14 +9,11 @@
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <children>
-                  <Button layoutX="13.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#showMessages" text="LOAD" />
                         <Button layoutX="195.0" layoutY="258.0" mnemonicParsing="false" onMouseClicked="#post" text="POST MESSAGE" />
                         <Button layoutX="204.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#createTag" text="CREATE TAG" />
                         <Button layoutX="220.0" layoutY="290.0" mnemonicParsing="false" onMouseClicked="#subscribe" text="SUBSCRIBE" />
                         <Button layoutX="200.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#unsubscribe" text="UNSUBSCRIBE" />
                         <Button layoutX="16.0" layoutY="352.0" mnemonicParsing="false" onMouseClicked="#logout" text="LOG OUT" />
-                  <TextField fx:id="for_load" layoutX="77.0" layoutY="187.0" prefHeight="25.0" prefWidth="90.0" />
-                  <Label layoutX="12.0" layoutY="170.0" text="LOAD MESSAGES FROM TAG" />
                   <ListView fx:id="feed_view" layoutX="151.0" layoutY="32.0" onMouseClicked="#showfromview" prefHeight="132.0" prefWidth="148.0" />
                   <Label layoutX="165.0" layoutY="6.0" text="YOUR SUBSCRIPTIONS" />
                   <ListView fx:id="all_tags" layoutY="33.0" prefHeight="132.0" prefWidth="148.0" />
@@ -26,6 +23,7 @@
                   <TextField fx:id="post_message" layoutX="100.0" layoutY="258.0" prefHeight="25.0" prefWidth="75.0" promptText="MESSAGE" />
                   <TextField fx:id="to_subscribe" layoutX="15.0" layoutY="290.0" prefHeight="25.0" prefWidth="161.0" promptText="INPUT NAME" />
                   <TextField fx:id="to_unsubscribe" layoutX="16.0" layoutY="321.0" prefHeight="25.0" prefWidth="161.0" promptText="INPUT NAME" />
+                  <Label fx:id="welcome" layoutX="16.0" layoutY="174.0" text="HELLO" wrapText="true" />
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
