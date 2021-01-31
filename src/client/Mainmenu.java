@@ -9,22 +9,146 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Mainmenu {//implements Initializable {
+public class Mainmenu implements Initializable {
     private final Socket s = Main.sock();
     public ListView<String> messages_list;
     public TextField for_load;
+    public ListView<String> feed_view;
+    public ListView<String> all_tags;
+    public TextField create_tag;
+    public TextField post_tag;
+    public TextField post_message;
+    public TextField to_subscribe;
+    public TextField to_unsubscribe;
     SceneLoader sceneLoader = new SceneLoader();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        try {
+            feed_view.getItems().clear();
+            OutputStream os = s.getOutputStream();
+            String msg = "Get feed\n";
+            os.write(msg.getBytes());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            String names;
+            names = reader.readLine();
+            String [] test = names.split("\t");
+            for(int i=1; i<=Integer.parseInt(test[0]); i++) {
+                feed_view.getItems().add(test[i]);
+            } }catch (IOException e){ System.out.println("error"); }
 
-    public void post(MouseEvent mouseEvent) { sceneLoader.loadScene(SceneLoader.SCENE.POST);
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            all_tags.getItems().clear();
+            OutputStream os = s.getOutputStream();
+            String msg = "Get tags\n";
+            os.write(msg.getBytes());
+
+            String names;
+            names = reader.readLine();
+            String [] test = names.split("\t");
+            for(int i=1; i<=Integer.parseInt(test[0]); i++) {
+                all_tags.getItems().add(test[i]);
+            }}catch (IOException e){ System.out.println("error"); }
+
+    }
+    public void post(MouseEvent mouseEvent) throws IOException {
+        OutputStream os = s.getOutputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+        String newm = "New message\n";
+        os.write(newm.getBytes());
+        String serverMessage = reader.readLine();
+        System.out.println(serverMessage);
+
+        os.write((post_tag.getText()+"\t").getBytes());
+        serverMessage = reader.readLine();
+        System.out.println(serverMessage);
+
+        os.write((post_message.getText()+"\t").getBytes());
+        serverMessage = reader.readLine();
+        System.out.println(serverMessage);
+
+        if(serverMessage.equals("Message created")) {
+            ShowAlert.alert("Message posted!", "Message  " + post_message.getText() + " posted!");
+        }
+        else{
+            ShowAlert.alert("Something went wrong", "Message" + post_message.getText() + " not posted, make sure tour tag name was correct");
+        }
+        sceneLoader.loadScene(SceneLoader.SCENE.MAIN_MENU);
     }
 
-    public void createTag(MouseEvent mouseEvent) { sceneLoader.loadScene(SceneLoader.SCENE.NEW_TAG);
+    public void createTag(MouseEvent mouseEvent) throws IOException {
+        OutputStream os = s.getOutputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+        String newt = "New tag\n";
+        os.write(newt.getBytes());
+        String serverMessage = reader.readLine();
+        System.out.println(serverMessage);
+
+        os.write((create_tag.getText()+ "\t").getBytes());
+        //os.write((name.getText()).getBytes());
+        serverMessage = reader.readLine();
+        System.out.println(serverMessage);
+
+        if(serverMessage.equals("tag created")){
+            ShowAlert.alert("New tag created","You have successfully created a new tag!");
+
+        }else{
+            ShowAlert.alert("Tag not created","Tag already exists, choose different name");
+        }
+        sceneLoader.loadScene(SceneLoader.SCENE.MAIN_MENU);
     }
 
-    public void getTags(MouseEvent mouseEvent) { sceneLoader.loadScene(SceneLoader.SCENE.GET_TAGS);
+    public void subscribe(MouseEvent mouseEvent) throws IOException {
+        OutputStream os = s.getOutputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+        String sub = "Subscribe\n";
+        os.write(sub.getBytes());
+
+        String serverMessage = reader.readLine();
+        System.out.println(serverMessage);
+
+        sub = to_subscribe.getText()+"\t";
+        //sub = to_sub.getText();
+
+        os.write(sub.getBytes());
+
+        serverMessage = reader.readLine();
+        System.out.println(serverMessage);
+        if(serverMessage.equals("Subscribtion succesfull")){
+            ShowAlert.alert(serverMessage, "You have successfully subscribed a tag");
+
+        }else{
+            ShowAlert.alert(serverMessage, "You typed unexisting tag or one that you already subscribe");
+        }
+        sceneLoader.loadScene(SceneLoader.SCENE.MAIN_MENU);
     }
 
-    public void unsubscribe(MouseEvent mouseEvent) { sceneLoader.loadScene(SceneLoader.SCENE.UNSUB);
+    public void unsubscribe(MouseEvent mouseEvent) throws IOException {
+        OutputStream os = null;
+        os = s.getOutputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+        String sub = "Unsubscribe\n";
+        os.write(sub.getBytes());
+        String serverMessage = reader.readLine();
+        System.out.println(serverMessage);
+
+        sub = to_unsubscribe.getText()+"\t";
+
+        os.write(sub.getBytes());
+        serverMessage = reader.readLine();
+        System.out.println(serverMessage);
+
+        if(serverMessage.equals("Unubscribtion succesfull")){
+            ShowAlert.alert(serverMessage, "You have successfully unsubscribed a tag");
+
+        }else{
+            ShowAlert.alert(serverMessage, "You typed unexisting tag or one that you don't subscribe");
+        }
+        sceneLoader.loadScene(SceneLoader.SCENE.MAIN_MENU);
     }
     public void logout(MouseEvent mouseEvent) throws IOException {
         OutputStream os = s.getOutputStream();
@@ -40,6 +164,8 @@ public class Mainmenu {//implements Initializable {
     public void showMessages(MouseEvent mouseEvent) throws IOException {
         messages_list.getItems().clear();
         OutputStream os = s.getOutputStream();
+        String u = StartMenu.getUsername();
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
         String feed = "Load tag\n";
@@ -48,15 +174,20 @@ public class Mainmenu {//implements Initializable {
         String serverMessage = reader.readLine();
         System.out.println(serverMessage);
         
-        String load = for_load.getText()+"\n";
+        String load = for_load.getText()+"\t";
         os.write(load.getBytes());
 
-        //String forint = reader.readLine();
-        // int num = Integer.parseInt(forint);
-
-        serverMessage = reader.readLine();
+        String mess = reader.readLine();
+        String [] test = mess.split("\t");
         System.out.println(serverMessage);
-        messages_list.getItems().add(serverMessage);
+        for(int i=1; i<=Integer.parseInt(test[0]); i++) {
+        messages_list.getItems().add(u+": "+test[i]);
+        }
+
+    }
+
+    public void showfromview(MouseEvent mouseEvent) {
+
 
     }
 }

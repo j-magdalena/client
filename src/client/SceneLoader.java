@@ -8,7 +8,7 @@ import java.io.IOException;
 public class SceneLoader {
 
         public enum SCENE{
-            START, MAIN_MENU, REGISTER, NEW_TAG, GET_TAGS, POST, UNSUB
+            START, MAIN_MENU, REGISTER
         }
         private String getFile(SCENE s){
             String file;
@@ -18,14 +18,6 @@ public class SceneLoader {
                 case MAIN_MENU -> { file = "mainmenu.fxml"; //get feed
                 }
                 case REGISTER -> { file = "register.fxml";
-                }
-                case NEW_TAG -> { file = "newtag.fxml";//create tag
-                }
-                case GET_TAGS -> { file = "Gettags.fxml";//explore new tags
-                }
-                case POST -> { file = "post.fxml";
-                }
-                case UNSUB -> { file = "unsubscribe.fxml";
                 }
                 default -> { file = null;
                 }

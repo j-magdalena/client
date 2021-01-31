@@ -7,10 +7,10 @@ import java.net.Socket;
 import java.util.Arrays;
 
 public class StartMenu {
+    private static String username;
     public TextField login;
     public TextField passwd;
     private final Socket s = Main.sock();
-
     SceneLoader sceneLoader = new SceneLoader();
     public void goLogin(MouseEvent mouseEvent) throws IOException, InterruptedException {
 
@@ -27,7 +27,7 @@ public class StartMenu {
             os.write(msg.getBytes());
             serverMessage = reader.readLine();
             System.out.println(serverMessage);
-
+            username = login.getText();
             String msg2 = passwd.getText() + "\n";
             os.write(msg2.getBytes());
 
@@ -41,6 +41,9 @@ public class StartMenu {
             sceneLoader.loadScene(SceneLoader.SCENE.MAIN_MENU);
         }
 
+    }
+    public static String getUsername(){
+        return username;
     }
 
     public void goRegister(MouseEvent mouseEvent) { sceneLoader.loadScene(SceneLoader.SCENE.REGISTER);
