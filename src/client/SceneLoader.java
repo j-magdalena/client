@@ -38,13 +38,13 @@ public class SceneLoader {
             Parent root = null;
             try {
                 root = FXMLLoader.load(getClass().getResource(dir));
+                User.stage.setTitle("Publish-subscribe service");
+                User.stage.setScene(new Scene(root, 600, 400));
+                User.stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            User.stage.setTitle("Publish-subscribe service");
-            User.stage.setScene(new Scene(root, 600, 400));
-            User.stage.show();
         }
 
 }

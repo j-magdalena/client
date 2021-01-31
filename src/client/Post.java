@@ -22,7 +22,7 @@ public class Post {
         String serverMessage = reader.readLine();
         System.out.println(serverMessage);
 
-        os.write(tag_name.getText().getBytes());
+        os.write((tag_name.getText()+"\n").getBytes());
         serverMessage = reader.readLine();
         System.out.println(serverMessage);
 

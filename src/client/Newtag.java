@@ -22,11 +22,17 @@ public class Newtag {
         String serverMessage = reader.readLine();
         System.out.println(serverMessage);
 
-        os.write(name.getText().getBytes());
+        os.write((name.getText()+ "\n").getBytes());
         serverMessage = reader.readLine();
         System.out.println(serverMessage);
 
-        ShowAlert.alert("New tag created","You have successfully created a new tag!");
+        if(serverMessage.equals("tag created")){
+            ShowAlert.alert("New tag created","You have successfully created a new tag!");
+        }else{
+            ShowAlert.alert("Tag not created","Tag already exists, choose different name");
+        }
+
+
 
     }
 
